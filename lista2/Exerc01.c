@@ -1,3 +1,15 @@
+// QUESTAO 01 - Elabore um único código em C para ler uma matriz de números inteiros e que possua
+// uma função para cada item abaixo:
+// a. Mostrar cada elemento da matriz;
+// b. Calcular e mostrar a soma dos elementos da matriz;
+// c. Calcular e mostrar o maior elemento da matriz;
+// d. Calcular e mostrar o menor elemento da matriz;
+// e. Calcular e mostrar o maior e o menor elemento da matriz;
+// f. Exibir cada elemento cujo valor seja maior que 50;
+// g. Exibir cada elemento cujo valor seja par;
+// h. Calcular e exibir a quantidade de elementos pares da matriz.
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -153,10 +165,14 @@ int main()
     int linhas, colunas;
     
     // ler as informações da matriz
-    printf("Digite a quantidade de linhas da matriz: ");
-    scanf("%d", &linhas);
-    printf("Digite a quantidade de colunas da matriz: ");
-    scanf("%d", &colunas);
+    do {
+        printf("Digite a quantidade de linhas da matriz: ");
+        scanf("%d", &linhas);
+    } while (linhas <= 0);
+    do {
+        printf("Digite a quantidade de colunas da matriz: ");
+        scanf("%d", &colunas);
+    } while (colunas <= 0);
     
     EspacoDuplo();
     
