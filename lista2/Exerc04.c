@@ -25,7 +25,7 @@ void EspacoSimples(void) {
 }
 
 int main () {
-    int quant_datas, count;
+    int quant_datas, count, horas_principal;
     data_referencia data_principal;
 
     do{
@@ -33,6 +33,7 @@ int main () {
         scanf("%d", &quant_datas);
     } while (quant_datas < 0 || quant_datas > 100);
 
+    int horas[quant_datas];
     data datas[quant_datas];
     
     EspacoDuplo();
@@ -63,7 +64,7 @@ int main () {
 
     EspacoDuplo();
 
-    printf("Informações da data referência >>> ");
+    printf("Informações da data referencia >>> ");
     EspacoSimples();
 
     do {
@@ -78,17 +79,66 @@ int main () {
         printf("Ano: ");
         scanf("%d", &data_principal.ano);
     } while (data_principal.ano < 0);
+    
+    // calculando horas data referencia
+    horas_principal = (data_principal.dia * 24) + (data_principal.mes * 30 * 24) + (data_principal.ano * 365 * 24);
 
-    // mostrando as datas
+    // calculando as horas de cada data
+    int soma;
     for (count = 0; count < quant_datas; count++) {
-        printf("%d/%d/%d", datas[count].dia, datas[count].mes, datas[count].ano);
-        EspacoSimples();
+        soma = 0;
+
+        soma = (datas[count].dia * 24) + (datas[count].mes * 30 * 24) + (datas[count].ano * 365 * 24);
+
+        horas[count] = soma;
     }
 
     EspacoDuplo();
     
-    printf("Data referencia: %d/%d/%d", data_principal.dia, data_principal.mes, data_principal.ano);
-
+    // encontrando a data mais proxima
+    int data_mais_proxima = 0;
+    int hora_auxiliar;
+    for (count = 0; count < quant_datas; count++) {
+        if (count == 0) {
+            data_mais_proxima = 0;
+            hora_auxiliar = horas[count];
+        } else if (count == 1) {
+            int diferenca = hora_auxiliar - horas_principal;
+            int diferenca_1 = horas[count] - horas_principal;
+            
+            if (diferenca < 0)  {
+                diferenca = diferenca * (-1);
+            } 
+            
+            if (diferenca_1 < 0) {
+                diferenca_1 = diferenca_1 * (-1);
+            }
+            
+            if (diferenca_1 < diferenca) {
+                data_mais_proxima = 1;
+                hora_auxiliar = diferenca_1;
+            } else {
+                data_mais_proxima = 0;
+                hora_auxiliar = diferenca;
+            }
+        } else {
+            int diferenca = horas[count] - horas_principal;
+            
+            if (diferenca < 0) {
+                diferenca = diferenca * (-1);
+            }
+            
+            if (diferenca < hora_auxiliar) {
+                data_mais_proxima = count;
+                hora_auxiliar = diferenca;
+            }
+        }
+    }
+    
+    EspacoDuplo();
+    
+    printf("A data mais proxima é a %d/%d/%d com %d horas ou %d dias de aproximacao!", datas[data_mais_proxima].dia, datas[data_mais_proxima].mes, datas[data_mais_proxima].ano, hora_auxiliar, hora_auxiliar / 24);
+    
     getchar();
     return 0;
 }
