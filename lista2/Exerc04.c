@@ -28,6 +28,7 @@ int main () {
     int quant_datas, count, horas_principal;
     data_referencia data_principal;
 
+    // lendo o tamanho do vetor
     do{
         printf("Informe a quantidade de datas que deseja inserir: ");
         scanf("%d", &quant_datas);
@@ -64,6 +65,7 @@ int main () {
 
     EspacoDuplo();
 
+    // lendo a data de referencia
     printf("Informações da data referencia >>> ");
     EspacoSimples();
 
@@ -142,6 +144,3 @@ int main () {
     getchar();
     return 0;
 }
-
-
-// como saberia que uma data ta proxima de outra
