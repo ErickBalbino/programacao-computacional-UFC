@@ -21,6 +21,6 @@ int main () {
     printf("Informe o segundo numero: ");
     scanf("%d", &num2);
 
-    VerificarEncaixe(num1, num2)]
+    VerificarEncaixe(num1, num2);
     return 0;
 }
